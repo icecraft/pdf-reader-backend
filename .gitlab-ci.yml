@@ -1,0 +1,48 @@
+stages:
+- test
+- build
+# - deployment
+- sync-tag
+
+variables:
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_USER: test
+  MYSQL_PASSWORD: test
+  GOPROXY: https://goproxy.cn,https://goproxy.io,direct
+  LANG: C.UTF-8
+  POSTGRES_USER: test
+  POSTGRES_PASSWORD: test
+  POSTGRES_DATABASE: test
+
+
+image:
+  name: ${KANIKO_EXECUTOR}
+  entrypoint: [""]
+ 
+before_script:
+- export IMAGE_REPOSITORY=${CI_PROJECT_PATH}
+- export IMAGE_TAG=${CI_COMMIT_BRANCH}.${CI_PIPELINE_ID:-c.${CI_COMMIT_SHA:0:8}}
+- export SERVER_IMAGE_NAME=${CI_REGISTRY}/${IMAGE_REPOSITORY}/server:${IMAGE_TAG}
+- mkdir -p /kaniko/.docker
+- echo "{\"auths\":{\"https://${CI_REGISTRY}/v1/\":{\"auth\":\"$(printf "%s:%s" "${REGISTRY_USERNAME}" "${REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+
+test:
+  stage: test
+  when: manual
+  image: ${TEST_IMAGE}
+    
+  script:
+  - make coverage
+  coverage: '/total:\s+\(statements\)\s+\d+\.\d+%/'
+
+build-server:
+  stage: build
+  script:
+  - export
+  - >-
+    /kaniko/executor
+    --context "${CI_PROJECT_DIR}"
+    --dockerfile "${CI_PROJECT_DIR}/cmd/server/Dockerfile"
+    --destination "${SERVER_IMAGE_NAME}"
+
+

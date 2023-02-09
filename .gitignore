@@ -1,0 +1,46 @@
+# compilation and distribution
+__pycache__
+_ext
+*.pyc
+*.so
+build/
+dist/
+wheels/
+
+# pytorch/python/numpy formats
+*.pth
+*.pkl
+*.npy
+
+# ipython/jupyter notebooks
+*.ipynb
+**/.ipynb_checkpoints/
+
+# Editor temporaries
+*.swn
+*.swo
+*.swp
+*~
+
+# editor settings
+.idea
+.vscode
+.venv
+
+# output and log dir
+output/
+log/
+resource/*.jsonl
+
+# added by rx
+main
+.go/pkg
+tmp/
+vendor
+test.go
+source.dev.env
+rui
+Dockerfile.local
+
+# added by yf
+evaluation
