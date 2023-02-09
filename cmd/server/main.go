@@ -17,7 +17,6 @@ import (
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/api"
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/utils"
 )
 
 func main() {
@@ -36,13 +35,6 @@ func main() {
 		log.SetLogger(log.Development(int8(*logLevel), *encoding))
 	} else {
 		log.SetLogger(log.Production(int8(*logLevel), *encoding))
-	}
-
-	// es init
-	err := utils.InitEs(conf.ES)
-	if err != nil {
-		log.Error(err, "failed to init es")
-		os.Exit(1)
 	}
 
 	// register route

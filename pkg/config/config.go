@@ -5,25 +5,10 @@ import (
 	"io/ioutil"
 )
 
-type MySqlConf struct {
-	HOST   string `json:"host,omitempty"`
-	DB     string `json:"db,omitempty"`
-	USER   string `json:"user,omitempty"`
-	PASSWD string `json:"passwd,omitempty"`
-}
-
-type RedisConf struct {
-	Endpoint string `json:"endpoint,omitempty"`
-	Password string `json:"password,omitempty"`
-}
-
 type Config struct {
-	EnableProfile bool      `json:"enable_profile"`
-	Debug         bool      `json:"debug,omitempty"`
-	Mysql         MySqlConf `json:"mysql,omitempty"`
-	TplFolder     string    `json:"tpl_folder,omitempty"`
-	Redis         RedisConf `json:"redis,omitempty"`
-	ES            ESConf    `json:"es,omitempty"`
+	EnableProfile bool   `json:"enable_profile"`
+	Debug         bool   `json:"debug,omitempty"`
+	ES            ESConf `json:"es,omitempty"`
 }
 
 func LoadConfigFromFile(configFileName string, o *Config) error {

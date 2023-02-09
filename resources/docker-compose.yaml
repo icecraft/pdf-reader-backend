@@ -1,0 +1,28 @@
+version: '3'
+services:
+  busybox:
+    image: busybox:latest
+    command: tail -f /dev/null
+
+  es:
+    environment:
+      - node.name=kifarunix-demo-es
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+    volumes:
+      - $HOME/Public/shared_docker_data/pdf_reader/elasticsearch:/mnt/docker/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.4
+    restart: always
+    environment:
+      SERVER_NAME: 0.0.0.0
+      ELASTICSEARCH_HOSTS: '["http://es:9200"]'
+    ports:
+      - 5601:5601
+

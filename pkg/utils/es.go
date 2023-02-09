@@ -8,37 +8,16 @@ import (
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
 )
 
-const (
-	MaxChunkSize   = 10000
-	MidChunkSize   = 1000
-	IndexChunkInfo = "chunk_info"
-)
-
-var (
-	Client *es.Client
-)
-
-type ChunkList struct {
-	AliasName string `json:"alias_name"`
-	ChunkId   []int  `json:"chunk_id"`
-}
-
-func InitEs(conf config.ESConf) error {
+func InitEs(conf config.ESConf) (*es.Client, error) {
 	var options []es.ClientOptionFunc
 	options = append(options, es.SetURL(conf.Url...))
 	options = append(options, es.SetBasicAuth(conf.Username, conf.Password))
 	options = append(options, es.SetSniff(true))
 	// options = append(options, es.SetTraceLog(eslog.New(os.Stdout, "", 0)))  //debug
 
-	client, err := es.NewClient(options...)
-	if err != nil {
-		return err
-	}
-	Client = client
-
-	return nil
+	return es.NewClient(options...)
 }
 
-func ExistedIndex(ctx context.Context, index string) (bool, error) {
-	return es.NewIndicesExistsService(Client).Index([]string{index}).Do(ctx)
+func ExistedIndex(ctx context.Context, client *es.Client, index string) (bool, error) {
+	return es.NewIndicesExistsService(client).Index([]string{index}).Do(ctx)
 }
