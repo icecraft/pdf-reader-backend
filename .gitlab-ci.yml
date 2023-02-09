@@ -37,6 +37,7 @@ test:
 
 build-server:
   stage: build
+  when: manual
   script:
   - export
   - >-
