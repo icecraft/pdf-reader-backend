@@ -16,7 +16,6 @@ import (
 
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/api"
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/dao"
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
 	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/utils"
 )
@@ -39,15 +38,6 @@ func main() {
 		log.SetLogger(log.Production(int8(*logLevel), *encoding))
 	}
 
-	// do some init
-	if err := dao.InitDAO(conf.Mysql, conf.TplFolder); err != nil {
-		log.Error(err, "failed to init dao")
-		os.Exit(1)
-	}
-	if err := dao.Sync2(); err != nil {
-		log.Error(err, "failed to sync talbe")
-		os.Exit(1)
-	}
 	// es init
 	err := utils.InitEs(conf.ES)
 	if err != nil {
@@ -70,13 +60,13 @@ func main() {
 	corsConfig.AllowAllOrigins = true
 	r.Use(cors.New(corsConfig))
 
-	v1Resource := r.Group("")
+	v1Resource := r.Group("/api")
 
 	server, err := api.NewServer(&conf, *encoding)
 	if err != nil {
 		panic(err)
 	}
-	api.RegisterApi(conf.Router, conf.Host, v1Resource, server)
+	api.RegisterApi(v1Resource, server)
 
 	// start server
 	srv := &http.Server{
