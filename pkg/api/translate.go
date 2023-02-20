@@ -16,5 +16,10 @@ func (s *Server) GetCiba(c *gin.Context) {
 		return
 	}
 
+	//Get from es
+	// if not then get from ciba
+
+	// put to es, or update es hit infomation
+
 	c.JSON(http.StatusOK, resp)
 }
