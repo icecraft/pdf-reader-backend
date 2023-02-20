@@ -22,4 +22,8 @@ const (
 		  }
 		}
 	  }`
+
+	CibaIndexName = "ciba_translate"
 )
+
+
