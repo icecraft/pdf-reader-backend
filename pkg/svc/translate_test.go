@@ -4,6 +4,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
 )
 
 func TestTranslateCiba(t *testing.T) {
@@ -22,6 +24,12 @@ func TestTranslateCiba(t *testing.T) {
 		assert.Equal(t, signature, "aa6bdc77c5fc05ea47417f461d3be9ed")
 	})
 
+	t.Run("translate", func(t *testing.T) {
+		resp, err := o.Fetch("bee")
+		assert.NoError(t, err)
+
+		log.Info("translate resp", "record", resp)
+	})
 }
 
 func TestConvertQueryMap(t *testing.T) {

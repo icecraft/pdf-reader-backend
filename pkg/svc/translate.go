@@ -2,10 +2,15 @@ package svc
 
 import (
 	"crypto/md5"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
+
+	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/types"
 )
 
 /*
@@ -41,9 +46,7 @@ func (o *Ciba) GetSignature(params map[string]string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(str)))
 }
 
-// params = {'client': 6, 'key': 1000006, 'timestamp': 1676809728411, 'word': word}
-
-func (o *Ciba) Fetch(word string) (string, error) {
+func (o *Ciba) Fetch(word string) (*types.CibaResp, error) {
 	if len(o.params) == 0 {
 		o.params = make(map[string]string)
 	}
@@ -57,8 +60,20 @@ func (o *Ciba) Fetch(word string) (string, error) {
 
 	url := cibaApiEndpoint + "?" + ConvertQueryMapToQuerystring(o.params)
 
-	//TODO: do real request
-	return url, nil
+	var ret types.CibaResp
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	json.Unmarshal(data, &ret)
+	return &ret, nil
 }
 
 func ConvertQueryMapToQuerystring(m map[string]string) string {

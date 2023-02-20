@@ -59,6 +59,7 @@ func main() {
 		panic(err)
 	}
 	api.RegisterApi(v1Resource, server)
+	api.RegisterTranslate(v1Resource, server)
 
 	// start server
 	srv := &http.Server{
