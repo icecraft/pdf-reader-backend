@@ -10,4 +10,5 @@ type RetrieveItem struct {
 	CN       string      `json:"cn,omitempty"`
 	Examples []string    `json:"examples,omitempty"`
 	Hits     []time.Time `json:"hits,omitempty"`
+	Synomyms []string    `json:"synomyms,omitempty"`
 }

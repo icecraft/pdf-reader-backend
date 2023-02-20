@@ -18,6 +18,7 @@ const (
 			"en":    {"type": "text"},
 			"cn":    {"type": "text"},
 			"examples":  {"type": "text"}, 
+			"synomyms":  {"type": "text"}, 
 			"hits" : {"type": "date"}
 		  }
 		}
@@ -25,5 +26,3 @@ const (
 
 	CibaIndexName = "ciba_translate"
 )
-
-

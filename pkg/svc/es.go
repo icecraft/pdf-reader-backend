@@ -16,6 +16,10 @@ type CibaEsIndex struct {
 	cli       *es.Client
 }
 
+func NewCibaEsIndex(indexName string, cli *es.Client) *CibaEsIndex {
+	return &CibaEsIndex{indexName: indexName, cli: cli}
+}
+
 func (o *CibaEsIndex) RetrieveWordTrans(word string) (*types.RetrieveItem, string, error) {
 	termQuery := es.NewTermQuery("word", strings.ToLower(word))
 	sr, err := o.cli.Search().
