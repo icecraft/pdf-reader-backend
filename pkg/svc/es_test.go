@@ -13,7 +13,7 @@ func TestEs(t *testing.T) {
 	var docId string
 
 	t.Run("put", func(t *testing.T) {
-		t1 := types.RetrieveItem{Word: "Bee", EN: "insect", CN: "蜜蜂", Examples: []string{"a bee fly above the flower"}}
+		t1 := types.RetrieveItem{Word: "Bee", EN: []string{"insect"}, CN: []string{"蜜蜂"}, Examples: []string{"a bee fly above the flower"}}
 		err := o.Put(&t1)
 		assert.NoError(t, err)
 	})
@@ -22,7 +22,7 @@ func TestEs(t *testing.T) {
 		resp, id, err := o.RetrieveWordTrans("Bee")
 		assert.NoError(t, err)
 		assert.Equal(t, resp.Word, "Bee")
-		assert.Equal(t, resp.EN, "insect")
+		assert.Equal(t, resp.EN, []string{"insect"})
 		assert.Equal(t, len(resp.Examples), 1)
 
 		docId = id

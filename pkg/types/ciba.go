@@ -2,8 +2,8 @@ package types
 
 type TranslateResp struct {
 	Word     string   `json:"word,omitempty"`
-	CN       string   `json:"cn,omitempty"`
-	EN       string   `json:"en,omitempty"`
+	CN       []string   `json:"cn,omitempty"`
+	EN       []string   `json:"en,omitempty"`
 	Examples []string `json:"examples,omitempty"`
 	Synomyms []string `json:"synomyms,omitempty"`
 }
