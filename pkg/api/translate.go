@@ -53,7 +53,7 @@ func (s *Server) GetCiba(c *gin.Context) {
 				}
 			}
 		}
-		ret.CN = strCn
+		ret.CN = strings.Join(strCn, ", ")
 		ret.EN = strEn
 		ret.Examples = examples
 
