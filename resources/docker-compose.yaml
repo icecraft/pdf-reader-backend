@@ -14,7 +14,7 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
     volumes:
-      - $HOME/Public/shared_docker_data/pdf_reader/elasticsearch:/mnt/docker/elasticsearch/data
+      - $HOME/.dev/shared_docker_data/pdf_reader/elasticsearch:/mnt/docker/elasticsearch/data
     ports:
       - 9200:9200
 
