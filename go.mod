@@ -1,4 +1,4 @@
-module gitlab.shlab.tech/xurui/pdf-reader-backend
+module github.com/icecraft/pdf-reader-backend
 
 go 1.17
 

@@ -2,12 +2,12 @@ package utils
 
 import (
 	"context"
-	"log"
-	"os"
+	// "log"
+	// "os"
 
 	es "github.com/olivere/elastic/v7"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
+	"github.com/icecraft/pdf-reader-backend/pkg/config"
 )
 
 func InitEs(conf config.ESConf, mapping, indexName string) (*es.Client, error) {
@@ -15,7 +15,7 @@ func InitEs(conf config.ESConf, mapping, indexName string) (*es.Client, error) {
 	options = append(options, es.SetURL(conf.Url...))
 	options = append(options, es.SetBasicAuth(conf.Username, conf.Password))
 	options = append(options, es.SetSniff(true))
-	options = append(options, es.SetTraceLog(log.New(os.Stdout, "", 0))) //debug
+	// options = append(options, es.SetTraceLog(log.New(os.Stdout, "", 0))) //debug
 
 	client, err := es.NewClient(options...)
 	if err != nil {

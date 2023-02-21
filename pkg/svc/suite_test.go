@@ -7,9 +7,9 @@ import (
 	"github.com/go-logr/logr"
 	es "github.com/olivere/elastic/v7"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/utils"
+	"github.com/icecraft/pdf-reader-backend/pkg/config"
+	"github.com/icecraft/pdf-reader-backend/pkg/log"
+	"github.com/icecraft/pdf-reader-backend/pkg/utils"
 )
 
 var (

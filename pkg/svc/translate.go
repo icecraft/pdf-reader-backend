@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/types"
+	"github.com/icecraft/pdf-reader-backend/pkg/types"
 )
 
 /*

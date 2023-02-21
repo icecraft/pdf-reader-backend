@@ -8,7 +8,7 @@ import (
 
 	es "github.com/olivere/elastic/v7"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/types"
+	"github.com/icecraft/pdf-reader-backend/pkg/types"
 )
 
 type CibaEsIndex struct {

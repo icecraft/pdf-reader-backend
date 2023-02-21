@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/types"
+	"github.com/icecraft/pdf-reader-backend/pkg/types"
 )
 
 func TestEs(t *testing.T) {

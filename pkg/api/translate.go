@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/types"
+	"github.com/icecraft/pdf-reader-backend/pkg/log"
+	"github.com/icecraft/pdf-reader-backend/pkg/types"
 )
 
 func (s *Server) GetCiba(c *gin.Context) {

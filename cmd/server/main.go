@@ -14,9 +14,9 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/api"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
+	"github.com/icecraft/pdf-reader-backend/pkg/api"
+	"github.com/icecraft/pdf-reader-backend/pkg/config"
+	"github.com/icecraft/pdf-reader-backend/pkg/log"
 )
 
 func main() {

@@ -1,10 +1,10 @@
 package api
 
 import (
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/config"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/log"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/svc"
-	"gitlab.shlab.tech/xurui/pdf-reader-backend/pkg/utils"
+	"github.com/icecraft/pdf-reader-backend/pkg/config"
+	"github.com/icecraft/pdf-reader-backend/pkg/log"
+	"github.com/icecraft/pdf-reader-backend/pkg/svc"
+	"github.com/icecraft/pdf-reader-backend/pkg/utils"
 )
 
 type Server struct {
