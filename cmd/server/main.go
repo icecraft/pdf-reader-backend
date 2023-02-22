@@ -84,7 +84,7 @@ func main() {
 		switch s {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
 			log.Info("Shutdown Server....")
-			time.Sleep(10 * time.Second)
+			time.Sleep(2 * time.Second)
 			if err := srv.Shutdown(context.TODO()); err != nil {
 				log.Error(err, "shutdown server now")
 			}

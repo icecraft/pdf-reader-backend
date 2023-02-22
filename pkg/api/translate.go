@@ -53,6 +53,10 @@ func (s *Server) GetCiba(c *gin.Context) {
 				}
 			}
 		}
+		if len(strCn) > 3 {
+			strCn = strCn[:3]
+		}
+
 		ret.CN = strings.Join(strCn, ", ")
 		ret.EN = strEn
 		ret.Examples = examples
@@ -79,6 +83,16 @@ func (s *Server) GetCiba(c *gin.Context) {
 		ret.EN = resp.EN
 		ret.Examples = resp.Examples
 		ret.Synomyms = resp.Synomyms
+	}
+
+	if len(ret.EN) > 3 {
+		ret.EN = ret.EN[:3]
+	}
+	if len(ret.Examples) > 3 {
+		ret.Examples = ret.Examples[:3]
+	}
+	if len(ret.Synomyms) > 3 {
+		ret.Synomyms = ret.Synomyms[:3]
 	}
 
 	// put to es, or update es hit infomation

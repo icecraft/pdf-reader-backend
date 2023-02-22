@@ -1,11 +1,11 @@
 package types
 
 type TranslateResp struct {
-	Word     string   `json:"word,omitempty"`
-	CN       string   `json:"cn,omitempty"`
-	EN       []string `json:"en,omitempty"`
-	Examples []string `json:"examples,omitempty"`
-	Synomyms []string `json:"synomyms,omitempty"`
+	Word     string   `json:"word"`
+	CN       string   `json:"cn"`
+	EN       []string `json:"en"`
+	Examples []string `json:"examples"`
+	Synomyms []string `json:"synomyms"`
 }
 
 type CibaResp struct {
