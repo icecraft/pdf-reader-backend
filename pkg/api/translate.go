@@ -12,7 +12,7 @@ import (
 
 func (s *Server) GetCiba(c *gin.Context) {
 	word := strings.ToLower(c.Param("word"))
-	ret := types.TranslateResp{Word: word}
+	ret := types.TranslateResp{Word: word, EN: []string{}, Examples: []string{}, Synomyms: []string{}}
 
 	resp, docId, err := s.es.RetrieveWordTrans(word)
 	if err != nil {
@@ -96,5 +96,15 @@ func (s *Server) GetCiba(c *gin.Context) {
 	}
 
 	// put to es, or update es hit infomation
+	if ret.EN == nil {
+		ret.EN = []string{}
+	}
+	if ret.Examples == nil {
+		ret.Examples = []string{}
+	}
+	if ret.Synomyms == nil {
+		ret.Synomyms = []string{}
+	}
+
 	c.JSON(http.StatusOK, ret)
 }
