@@ -11,7 +11,7 @@ import (
 )
 
 func (s *Server) GetCiba(c *gin.Context) {
-	word := strings.ToLower(c.Param("word"))
+	word := strings.Trim(strings.ToLower(c.Param("word")), ",.?!")
 	ret := types.TranslateResp{Word: word, EN: []string{}, Examples: []string{}, Synomyms: []string{}}
 
 	resp, docId, err := s.es.RetrieveWordTrans(word)
